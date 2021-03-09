@@ -35,23 +35,23 @@
             <h1 class="question text-center hidden">smkjx cnkxjz nxknv djknzkj nkzx</h1>
             <div class="row gy-3 gx-5 row-cols-2 my-1 answers hidden">
                 <div class="col">
-                    <div class="bg-primary  rounded p-2 answer text-white text-center fs-4">
+                    <div class="bg-primary  rounded p-2 choice text-white text-center fs-4">
                         answer 1
                     </div>
                 </div>
 
                 <div class="col">
-                    <div class="bg-primary  rounded p-2 answer text-white text-center fs-4">
+                    <div class="bg-primary  rounded p-2 choice text-white text-center fs-4">
                         answer 1
                     </div>
                 </div>
                 <div class="col">
-                    <div class="bg-primary  rounded p-2 answer text-white text-center fs-4">
+                    <div class="bg-primary  rounded p-2 choice text-white text-center fs-4">
                         answer 1
                     </div>
                 </div>
                 <div class="col">
-                    <div class="bg-primary  rounded p-2 answer text-white text-center fs-4">
+                    <div class="bg-primary  rounded p-2 choice text-white text-center fs-4">
                         answer 1
                     </div>
                 </div>
@@ -79,23 +79,143 @@
     </div>
 
     <script>
+        let quiz = [{
+                id: 1,
+                text: "What is JavaScript?",
+                answers: [{
+                        id: 1,
+                        text: "It is a programming language",
+                        is_correct: true
+                    },
+                    {
+                        id: 2,
+                        text: "It is next version of java",
+                        is_correct: false
+                    },
+                    {
+                        id: 3,
+                        text: "It is a windows script language",
+                        is_correct: false
+                    },
+                    {
+                        id: 4,
+                        text: "It is a name of cookies",
+                        is_correct: false
+                    }
+                ]
+            },
+            {
+                id: 2,
+                text: "How can we read the properties of an object?",
+                answers: [{
+                        id: 1,
+                        text: "bracket",
+                        is_correct: false
+                    },
+                    {
+                        id: 2,
+                        text: "index",
+                        is_correct: false
+                    },
+                    {
+                        id: 3,
+                        text: "==",
+                        is_correct: false
+                    },
+                    {
+                        id: 4,
+                        text: "dot notation",
+                        is_correct: true
+                    }
+                ]
+            },
+            {
+                id: 2,
+                text: "Js stands for?",
+                answers: [{
+                        id: 1,
+                        text: "Java",
+                        is_correct: false
+                    },
+                    {
+                        id: 2,
+                        text: "JavaScript",
+                        is_correct: true
+                    },
+                    {
+                        id: 3,
+                        text: "Python",
+                        is_correct: false
+                    },
+                    {
+                        id: 4,
+                        text: "c++",
+                        is_correct: false
+                    }
+                ]
+            },
+            {
+                id: 2,
+                text: "What is === operator in JavaScript ??",
+                answers: [{
+                        id: 1,
+                        text: "compare types",
+                        is_correct: false
+                    },
+                    {
+                        id: 2,
+                        text: "compare functions",
+                        is_correct: false
+                    },
+                    {
+                        id: 3,
+                        text: "compare values and types",
+                        is_correct: true
+                    },
+                    {
+                        id: 4,
+                        text: "compare values",
+                        is_correct: false
+                    }
+                ]
+            }
+        ]
+
         const startBtn = document.querySelector('#start-btn');
         const nextBtn = document.querySelector('#next-btn');
         const question = document.querySelector('.question');
-        const answers =  document.querySelector('.answers');
+        const answers = document.querySelector('.answers');
         const counterDiv = document.querySelector('#counter');
-        const alertTxt = "Welcome to JS quiz\n Here are the rules: \n 1 -Don't select the same answer twice.\n2- If all your answers are wrong, you will not get a feedback abput how many question(s) ypu answered.\n3- If your answer is correct, ypu will see green color\n 4- If your answer is wrong, you will see red color";
-        function toggleHidden(e){
+        const choices = document.querySelectorAll('.choice');
+        const alertTxt =
+            "Welcome to JS quiz\n Here are the rules: \n 1 -Don't select the same answer twice.\n2- If all your answers are wrong, you will not get a feedback abput how many question(s) ypu answered.\n3- If your answer is correct, ypu will see green color\n 4- If your answer is wrong, you will see red color";
+
+        function toggleHidden(e) {
             this.classList.toggle('hidden');
-            if (this === startBtn){
+            if (this === startBtn) {
                 answers.classList.toggle('hidden');
                 question.classList.toggle('hidden');
+                showQuestion();
             }
+        }
+        console.log(question.innerHTML = quiz[0].text);
+
+        function showQuestion() {
+            let questions = quiz;
+            question.innerHTML = questions[0].text;
+            let answers = quiz[0].answers;
+            choices.forEach((choice) => {
+                
+                    choice.setAttribute('data-answer', `${answers[0].is_correct}`);
+                    choice.setAttribute('id', `${answers[0].id}`);
+                    choice.innerHTML = answers[0].text;
+                    answers.shift();
+            });
+
         }
         startBtn.addEventListener('click', toggleHidden);
         startBtn.addEventListener('click', () => alert(alertTxt));
         nextBtn.addEventListener('click', toggleHidden);
-        
     </script>
 </body>
 

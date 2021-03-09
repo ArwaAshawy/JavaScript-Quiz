@@ -28,7 +28,7 @@ button:hover {
     border: 2px white solid;
 }
 
-.answer:hover {
+.choice:hover {
     border: 2px white solid;
 }
 
@@ -36,7 +36,7 @@ button:hover {
    font-family: 'Squada One', cursive;;
 }
 
-.answer {
+.choice {
     font-family: 'Josefin Sans', sans-serif;;
 }
 
