@@ -25,15 +25,15 @@
     <div class="d-flex justify-content-center align-items-center vh-100">
         <div class="container rounded px-5">
 
-            <h1 class="logo fs-4 fw-bold m-3">
+            <h1 class="logo fs-4 fw-bold my-3">
                 JavaScrip Quiz
             </h1>
-            <div class="d-flex justify-content-end">
-                <p class="float-end">0/0</p>
+            <div id="counter" class="d-flex justify-content-end">
+                <p class="float-end hidden">0/0</p>
             </div>
 
-            <h1 class="question text-center">smkjx cnkxjz nxknv djknzkj nkzx</h1>
-            <div class="row gy-3 gx-5 row-cols-2 my-1">
+            <h1 class="question text-center hidden">smkjx cnkxjz nxknv djknzkj nkzx</h1>
+            <div class="row gy-3 gx-5 row-cols-2 my-1 answers hidden">
                 <div class="col">
                     <div class="bg-primary  rounded p-2 answer text-white text-center fs-4">
                         answer 1
@@ -57,24 +57,45 @@
                 </div>
             </div>
             <div class="controls text-center my-4">
-                <button id="next-btn"
-                    class="btn btn-primary btn-lg border border-secondary fw-bold fs-4 d-block mx-auto m-2">Next</button>
-                <button id="start-btn"
-                    class="btn btn-primary btn-lg border border-secondary fw-bold fs-4 d-block mx-auto m-2">Start</button>
+                <div id="next-btn" class="hidden">
+                    <button
+                        class="btn btn-primary btn-lg border border-secondary fw-bold fs-4 d-block mx-auto m-2">Next</button>
+                </div>
+                <div id="start-btn">
+                    <button
+                        class="btn btn-primary btn-lg border border-secondary fw-bold fs-4 d-block mx-auto m-2">Start</button>
+                </div>
+
             </div>
 
         </div>
 
 
     </div>
-    <div id="last-page" class="logo fs-1 fw-bold">
+    <div id="last-page" class="logo fs-1 fw-bold hidden">
         <p>
             Thank you for taking JavaScript Quiz!
         </p>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous">
+    <script>
+        const startBtn = document.querySelector('#start-btn');
+        const nextBtn = document.querySelector('#next-btn');
+        const question = document.querySelector('.question');
+        const answers =  document.querySelector('.answers');
+        const counterDiv = document.querySelector('#counter');
+        const alertTxt = "Welcome to JS quiz\n Here are the rules: \n 1 -Don't select the same answer twice.\n2- If all your answers are wrong, you will not get a feedback abput how many question(s) ypu answered.\n3- If your answer is correct, ypu will see green color\n 4- If your answer is wrong, you will see red color";
+        function toggleHidden(e){
+            this.classList.toggle('hidden');
+            if (this === startBtn){
+                answers.classList.toggle('hidden');
+                question.classList.toggle('hidden');
+            }
+        }
+        startBtn.addEventListener('click', toggleHidden);
+        startBtn.addEventListener('click', () => alert(alertTxt));
+        nextBtn.addEventListener('click', toggleHidden);
+        
     </script>
 </body>
 
