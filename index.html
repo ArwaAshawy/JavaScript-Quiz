@@ -327,10 +327,12 @@
         }
         let questions = quiz;
         function showQuestion() {
+            // backTobaseColors(this);
             counterDiv.innerHTML = `${++questionCounter}/8`;
             question.innerHTML = questions[0].text;
             let answers = questions[0].answers;
             choices.forEach((choice) => {
+                backTobaseColors(choice);
                 choice.setAttribute('data-answer', `${answers[0].is_correct}`);
                 choice.setAttribute('id', `${answers[0].id}`);
                 choice.innerHTML = answers[0].text;
@@ -340,7 +342,13 @@
             questions.shift();
             nextBtn.classList.add('hidden');
         }
-
+        function backTobaseColors(e){
+            e.classList.add('bg-primary');
+            e.classList.add('text-white');
+            e.classList.remove('correct');
+            e.classList.remove('wrong');
+            e.classList.remove('text-dark');
+        }
         function correct(e) {
             e.classList.remove('bg-primary');
             e.classList.remove('text-white');
@@ -373,6 +381,7 @@
         startBtn.addEventListener('click', () => alert(alertTxt));
         // nextBtn.addEventListener('click', toggleHidden);
         nextBtn.addEventListener('click', showQuestion);
+        // nextBtn.addEventListener('click', backToBase());
         choices.forEach(choice => choice.addEventListener('click', revealSolution));
     </script>
 </body>
