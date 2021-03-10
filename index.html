@@ -22,37 +22,40 @@
 </head>
 
 <body>
-    <div class="d-flex justify-content-center align-items-center vh-100">
+    <div class="d-flex justify-content-center align-items-center vh-100 ">
         <div class="container rounded px-5">
 
             <h1 class="logo fs-4 fw-bold my-3">
                 JavaScrip Quiz
             </h1>
-            <div id="counter" class="d-flex justify-content-end">
-                <p class="float-end hidden">0/0</p>
+            <!-- <div id="counter" class="d-flex justify-content-end hidden fw-bold">
+                <p class="border border-1 border-dark"></p>
+            </div> -->
+            <div class="cont">
+                <p id="counter" class="text-end fw-bold"></p>
             </div>
-
-            <h1 class="question text-center hidden">smkjx cnkxjz nxknv djknzkj nkzx</h1>
+            
+            <h1 class="question text-center hidden"></h1>
             <div class="row gy-3 gx-5 row-cols-2 my-1 answers hidden">
                 <div class="col">
                     <div class="bg-primary  rounded p-2 choice text-white text-center fs-4">
-                        answer 1
+
                     </div>
                 </div>
 
                 <div class="col">
                     <div class="bg-primary  rounded p-2 choice text-white text-center fs-4">
-                        answer 1
+
                     </div>
                 </div>
                 <div class="col">
                     <div class="bg-primary  rounded p-2 choice text-white text-center fs-4">
-                        answer 1
+
                     </div>
                 </div>
                 <div class="col">
                     <div class="bg-primary  rounded p-2 choice text-white text-center fs-4">
-                        answer 1
+
                     </div>
                 </div>
             </div>
@@ -65,7 +68,10 @@
                     <button
                         class="btn btn-primary btn-lg border border-secondary fw-bold fs-4 d-block mx-auto m-2">Start</button>
                 </div>
-
+                <div id="exit-btn" class="hidden">
+                    <button
+                        class="btn btn-primary btn-lg border border-secondary fw-bold fs-4 d-block mx-auto m-2">Exit</button>
+                </div>
             </div>
 
         </div>
@@ -309,6 +315,7 @@
 
         const startBtn = document.querySelector('#start-btn');
         const nextBtn = document.querySelector('#next-btn');
+        const exitBtn = document.querySelector('#exit-btn');
         const question = document.querySelector('.question');
         const answers = document.querySelector('.answers');
         const counterDiv = document.querySelector('#counter');
@@ -318,7 +325,8 @@
         //to keep track of the how many answers were correct
         let total = 0;
         //to keep track of the question's number
-        let  questionCounter = 0;
+        let questionCounter = 0;
+
         function toggleHidden(e) {
             this.classList.toggle('hidden');
             if (this === startBtn) {
@@ -327,34 +335,50 @@
                 showQuestion();
             }
         }
+
+        function showTheResult() {
+            const p = document.createElement('p');
+            // let p = document.createElement('p');
+            const text = document.createTextNode(`You got ${total} correct(s) from 9`);
+            p.appendChild(text);
+            counterDiv.appendChild(p);
+        }
         //we will remove the first element of the array after each question revealation, so in order not to modify the original array
         let questions = quiz;
+
         function showQuestion() {
-            counterDiv.innerHTML = `${++questionCounter}/10`;
-            question.innerHTML = questions[0].text;
-            let answers = questions[0].answers;
-            choices.forEach((choice) => {
-                backTobaseColors(choice);
-                choice.setAttribute('data-answer', `${answers[0].is_correct}`);
-                choice.setAttribute('id', `${answers[0].id}`);
-                choice.innerHTML = answers[0].text;
-                //not to repeat the sama choice twice
-                answers.shift();
+            counterDiv.innerHTML = `${++questionCounter}/9`;
+            if (questions.length !== 0) {
+                question.innerHTML = questions[0].text;
+                let answers = questions[0].answers;
+                choices.forEach((choice) => {
+                    backTobaseColors(choice);
+                    choice.setAttribute('data-answer', `${answers[0].is_correct}`);
+                    choice.setAttribute('id', `${answers[0].id}`);
+                    choice.innerHTML = answers[0].text;
+                    //not to repeat the sama choice twice
+                    answers.shift();
+                });
+            } else {
+                showTheResult();
+                exitBtn.classList.remove('hidden');
             }
-            );
+
             //not to repeat the sama question twice
             questions.shift();
             nextBtn.classList.add('hidden');
         }
         //to remove the modifications that were added because of revealSolution function and go back to the primary style
-        function backTobaseColors(elm){
-            elm.classList.add('bg-primary','text-white');
-            elm.classList.remove('correct','wrong','text-dark');
+        function backTobaseColors(elm) {
+            elm.classList.add('bg-primary', 'text-white');
+            elm.classList.remove('correct', 'wrong', 'text-dark');
         }
+
         function correct(elm) {
             elm.classList.remove('bg-primary', 'text-white');
-            elm.classList.add('correct','text-dark');
+            elm.classList.add('correct', 'text-dark');
         }
+
         function wrong(elm) {
             elm.classList.remove('bg-primary');
             elm.classList.add('wrong');
@@ -364,13 +388,12 @@
             choices.forEach(choice => {
                 if (choice.dataset.answer == 'true') {
                     correct(choice);
-                } else{
+                } else {
                     wrong(choice);
                 }
-            }
-            );
+            });
             nextBtn.classList.remove('hidden');
-            if (this.dataset.answer == 'true'){
+            if (this.dataset.answer == 'true') {
                 total++;
             }
         }
