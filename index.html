@@ -327,6 +327,7 @@
         }
         let questions = quiz;
         function showQuestion() {
+            counterDiv.innerHTML = `${++questionCounter}/8`;
             question.innerHTML = questions[0].text;
             let answers = questions[0].answers;
             choices.forEach((choice) => {
@@ -365,7 +366,7 @@
             if (this.dataset.answer == 'true'){
                 total++;
             }
-            counterDiv.innerHTML = `${++questionCounter}/8`;
+           
 
         }
         startBtn.addEventListener('click', toggleHidden);
