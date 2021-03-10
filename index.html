@@ -315,7 +315,8 @@
         const choices = document.querySelectorAll('.choice');
         const alertTxt =
             "Welcome to JS quiz\n Here are the rules: \n 1 -Don't select the same answer twice.\n2- If all your answers are wrong, you will not get a feedback abput how many question(s) ypu answered.\n3- If your answer is correct, ypu will see green color\n 4- If your answer is wrong, you will see red color";
-
+        let total = 0;
+        let  questionCounter = 0;
         function toggleHidden(e) {
             this.classList.toggle('hidden');
             if (this === startBtn) {
@@ -324,24 +325,54 @@
                 showQuestion();
             }
         }
-        console.log(question.innerHTML = quiz[0].text);
-
+        let questions = quiz;
         function showQuestion() {
-            let questions = quiz;
             question.innerHTML = questions[0].text;
-            let answers = quiz[0].answers;
+            let answers = questions[0].answers;
             choices.forEach((choice) => {
+                choice.setAttribute('data-answer', `${answers[0].is_correct}`);
+                choice.setAttribute('id', `${answers[0].id}`);
+                choice.innerHTML = answers[0].text;
+                answers.shift();
+            }
+            );
+            questions.shift();
+            nextBtn.classList.add('hidden');
+        }
+
+        function correct(e) {
+            e.classList.remove('bg-primary');
+            e.classList.remove('text-white');
+            e.classList.add('correct');
+            e.classList.add('text-dark');
+        }
+        function wrong(e) {
+            e.classList.remove('bg-primary');
+            e.classList.add('wrong');
+        }
+
+        function revealSolution() {
+            choices.forEach(choice => {
+                if (choice.dataset.answer == 'true') {
+                    correct(choice);
                 
-                    choice.setAttribute('data-answer', `${answers[0].is_correct}`);
-                    choice.setAttribute('id', `${answers[0].id}`);
-                    choice.innerHTML = answers[0].text;
-                    answers.shift();
-            });
+                } else{
+                    wrong(choice);
+                }
+            }
+            );
+            nextBtn.classList.remove('hidden');
+            if (this.dataset.answer == 'true'){
+                total++;
+            }
+            counterDiv.innerHTML = `${++questionCounter}/8`;
 
         }
         startBtn.addEventListener('click', toggleHidden);
         startBtn.addEventListener('click', () => alert(alertTxt));
-        nextBtn.addEventListener('click', toggleHidden);
+        // nextBtn.addEventListener('click', toggleHidden);
+        nextBtn.addEventListener('click', showQuestion);
+        choices.forEach(choice => choice.addEventListener('click', revealSolution));
     </script>
 </body>
 

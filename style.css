@@ -43,3 +43,11 @@ button:hover {
 .hidden {
     display: none;
 }
+
+.correct {
+    background-color: #00FF6A;
+}
+
+.wrong {
+    background-color: red;
+}
