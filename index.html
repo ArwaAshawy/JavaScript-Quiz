@@ -79,7 +79,7 @@
     </div>
 
     <script>
-        let quiz = [{
+        const quiz = [{
                 id: 1,
                 text: "What is JavaScript?",
                 answers: [{
@@ -315,7 +315,9 @@
         const choices = document.querySelectorAll('.choice');
         const alertTxt =
             "Welcome to JS quiz\n Here are the rules: \n 1 -Don't select the same answer twice.\n2- If all your answers are wrong, you will not get a feedback abput how many question(s) ypu answered.\n3- If your answer is correct, ypu will see green color\n 4- If your answer is wrong, you will see red color";
+        //to keep track of the how many answers were correct
         let total = 0;
+        //to keep track of the question's number
         let  questionCounter = 0;
         function toggleHidden(e) {
             this.classList.toggle('hidden');
@@ -325,10 +327,10 @@
                 showQuestion();
             }
         }
+        //we will remove the first element of the array after each question revealation, so in order not to modify the original array
         let questions = quiz;
         function showQuestion() {
-            // backTobaseColors(this);
-            counterDiv.innerHTML = `${++questionCounter}/8`;
+            counterDiv.innerHTML = `${++questionCounter}/10`;
             question.innerHTML = questions[0].text;
             let answers = questions[0].answers;
             choices.forEach((choice) => {
@@ -336,35 +338,32 @@
                 choice.setAttribute('data-answer', `${answers[0].is_correct}`);
                 choice.setAttribute('id', `${answers[0].id}`);
                 choice.innerHTML = answers[0].text;
+                //not to repeat the sama choice twice
                 answers.shift();
             }
             );
+            //not to repeat the sama question twice
             questions.shift();
             nextBtn.classList.add('hidden');
         }
-        function backTobaseColors(e){
-            e.classList.add('bg-primary');
-            e.classList.add('text-white');
-            e.classList.remove('correct');
-            e.classList.remove('wrong');
-            e.classList.remove('text-dark');
+        //to remove the modifications that were added because of revealSolution function and go back to the primary style
+        function backTobaseColors(elm){
+            elm.classList.add('bg-primary','text-white');
+            elm.classList.remove('correct','wrong','text-dark');
         }
-        function correct(e) {
-            e.classList.remove('bg-primary');
-            e.classList.remove('text-white');
-            e.classList.add('correct');
-            e.classList.add('text-dark');
+        function correct(elm) {
+            elm.classList.remove('bg-primary', 'text-white');
+            elm.classList.add('correct','text-dark');
         }
-        function wrong(e) {
-            e.classList.remove('bg-primary');
-            e.classList.add('wrong');
+        function wrong(elm) {
+            elm.classList.remove('bg-primary');
+            elm.classList.add('wrong');
         }
 
         function revealSolution() {
             choices.forEach(choice => {
                 if (choice.dataset.answer == 'true') {
                     correct(choice);
-                
                 } else{
                     wrong(choice);
                 }
@@ -374,14 +373,10 @@
             if (this.dataset.answer == 'true'){
                 total++;
             }
-           
-
         }
         startBtn.addEventListener('click', toggleHidden);
         startBtn.addEventListener('click', () => alert(alertTxt));
-        // nextBtn.addEventListener('click', toggleHidden);
         nextBtn.addEventListener('click', showQuestion);
-        // nextBtn.addEventListener('click', backToBase());
         choices.forEach(choice => choice.addEventListener('click', revealSolution));
     </script>
 </body>
