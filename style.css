@@ -21,9 +21,14 @@ body {
 .logo {
     font-family: 'Pacifico', cursive;
     color: var(--logo-color);
+   
+}
+.neg-me {
     margin-left: -2.1rem ;
 }
-
+.lg-font {
+    font-size: 3.5rem;
+}
 button:hover {
     border: 2px white solid;
 }

@@ -22,63 +22,66 @@
 </head>
 
 <body>
-    <div class="d-flex justify-content-center align-items-center vh-100 ">
-        <div class="container rounded px-5">
-
-            <h1 class="logo fs-4 fw-bold my-3">
-                JavaScrip Quiz
-            </h1>
-            <!-- <div id="counter" class="d-flex justify-content-end hidden fw-bold">
-                <p class="border border-1 border-dark"></p>
-            </div> -->
-            <div class="cont">
-                <p id="counter" class="text-end fw-bold"></p>
+    <div id="quiz-view">
+        <div class="d-flex justify-content-center align-items-center vh-100 ">
+            <div class="container rounded px-5">
+    
+                <h1 class="logo fs-4 fw-bold my-3 neg-me">
+                    JavaScrip Quiz
+                </h1>
+                <!-- <div id="counter" class="d-flex justify-content-end hidden fw-bold">
+                    <p class="border border-1 border-dark"></p>
+                </div> -->
+                <div>
+                    <p id="counter" class="text-end fw-bold"></p>
+                </div>
+    
+                <h1 class="question text-center hidden"></h1>
+                <div class="row gy-3 gx-5 row-cols-2 my-1 answers hidden">
+                    <div class="col">
+                        <div class="bg-primary  rounded p-2 choice text-white text-center fs-4">
+    
+                        </div>
+                    </div>
+    
+                    <div class="col">
+                        <div class="bg-primary  rounded p-2 choice text-white text-center fs-4">
+    
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="bg-primary  rounded p-2 choice text-white text-center fs-4">
+    
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="bg-primary  rounded p-2 choice text-white text-center fs-4">
+    
+                        </div>
+                    </div>
+                </div>
+                <div class="controls text-center my-4">
+                    <div id="next-btn" class="hidden">
+                        <button
+                            class="btn btn-primary btn-lg border border-secondary fw-bold fs-4 d-block mx-auto m-2">Next</button>
+                    </div>
+                    <div id="start-btn">
+                        <button
+                            class="btn btn-primary btn-lg border border-secondary fw-bold fs-4 d-block mx-auto m-2">Start</button>
+                    </div>
+                    <div id="exit-btn" class="hidden">
+                        <button
+                            class="btn btn-primary btn-lg border border-secondary fw-bold fs-4 d-block mx-auto m-2">Exit</button>
+                    </div>
+                </div>
+    
             </div>
-            
-            <h1 class="question text-center hidden"></h1>
-            <div class="row gy-3 gx-5 row-cols-2 my-1 answers hidden">
-                <div class="col">
-                    <div class="bg-primary  rounded p-2 choice text-white text-center fs-4">
-
-                    </div>
-                </div>
-
-                <div class="col">
-                    <div class="bg-primary  rounded p-2 choice text-white text-center fs-4">
-
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="bg-primary  rounded p-2 choice text-white text-center fs-4">
-
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="bg-primary  rounded p-2 choice text-white text-center fs-4">
-
-                    </div>
-                </div>
-            </div>
-            <div class="controls text-center my-4">
-                <div id="next-btn" class="hidden">
-                    <button
-                        class="btn btn-primary btn-lg border border-secondary fw-bold fs-4 d-block mx-auto m-2">Next</button>
-                </div>
-                <div id="start-btn">
-                    <button
-                        class="btn btn-primary btn-lg border border-secondary fw-bold fs-4 d-block mx-auto m-2">Start</button>
-                </div>
-                <div id="exit-btn" class="hidden">
-                    <button
-                        class="btn btn-primary btn-lg border border-secondary fw-bold fs-4 d-block mx-auto m-2">Exit</button>
-                </div>
-            </div>
-
+    
+    
         </div>
-
-
     </div>
-    <div id="last-page" class="logo fs-1 fw-bold hidden">
+   
+    <div id="thanks-view" class="logo lg-font fw-bold d-flex justify-content-center align-items-center vh-100 hidden">
         <p>
             Thank you for taking JavaScript Quiz!
         </p>
@@ -235,81 +238,81 @@
                     }
                 ]
             },
-            {
-                id: 7,
-                text: "What is an IIFE in JavaScript ?",
-                answers: [{
-                        id: 1,
-                        text: "normal function",
-                        is_correct: false
-                    },
-                    {
-                        id: 2,
-                        text: "Immediately Invoked Fucntion Expression",
-                        is_correct: true
-                    },
-                    {
-                        id: 3,
-                        text: "LIFE does not exist in JavaSCript",
-                        is_correct: false
-                    },
-                    {
-                        id: 4,
-                        text: "type of classes in JavaScript",
-                        is_correct: false
-                    }
-                ]
-            },
-            {
-                id: 8,
-                text: "the most popular programing language in 2020 is ?",
-                answers: [{
-                        id: 1,
-                        text: "JavaScript",
-                        is_correct: false
-                    },
-                    {
-                        id: 2,
-                        text: "IPython",
-                        is_correct: true
-                    },
-                    {
-                        id: 3,
-                        text: "Java",
-                        is_correct: false
-                    },
-                    {
-                        id: 4,
-                        text: "c++",
-                        is_correct: false
-                    }
-                ]
-            },
-            {
-                id: 9,
-                text: "JavaScript was originally called ?",
-                answers: [{
-                        id: 1,
-                        text: "Java",
-                        is_correct: false
-                    },
-                    {
-                        id: 2,
-                        text: "Mocha",
-                        is_correct: true
-                    },
-                    {
-                        id: 3,
-                        text: "JSON",
-                        is_correct: false
-                    },
-                    {
-                        id: 4,
-                        text: "c++",
-                        is_correct: false
-                    }
-                ]
-            },
+            // {
+            //     id: 7,
+            //     text: "What is an IIFE in JavaScript ?",
+            //     answers: [{
+            //             id: 1,
+            //             text: "normal function",
+            //             is_correct: false
+            //         },
+            //         {
+            //             id: 2,
+            //             text: "Immediately Invoked Fucntion Expression",
+            //             is_correct: true
+            //         },
+            //         {
+            //             id: 3,
+            //             text: "LIFE does not exist in JavaSCript",
+            //             is_correct: false
+            //         },
+            //         {
+            //             id: 4,
+            //             text: "type of classes in JavaScript",
+            //             is_correct: false
+            //         }
+            //     ]
+            // },
+            // {
+            //     id: 8,
+            //     text: "the most popular programing language in 2020 is ?",
+            //     answers: [{
+            //             id: 1,
+            //             text: "JavaScript",
+            //             is_correct: false
+            //         },
+            //         {
+            //             id: 2,
+            //             text: "IPython",
+            //             is_correct: true
+            //         },
+            //         {
+            //             id: 3,
+            //             text: "Java",
+            //             is_correct: false
+            //         },
+            //         {
+            //             id: 4,
+            //             text: "c++",
+            //             is_correct: false
+            //         }
+            //     ]
+            // },
+            // {
+            //     id: 9,
+            //     text: "JavaScript was originally called ?",
+            //     answers: [{
+            //             id: 1,
+            //             text: "Java",
+            //             is_correct: false
+            //         },
+            //         {
+            //             id: 2,
+            //             text: "Mocha",
+            //             is_correct: true
+            //         },
+            //         {
+            //             id: 3,
+            //             text: "JSON",
+            //             is_correct: false
+            //         },
+            //         {
+            //             id: 4,
+            //             text: "c++",
+            //             is_correct: false
+            //         }
+            //     ]
+            // },
 
         ]
 
@@ -320,6 +323,8 @@
         const answers = document.querySelector('.answers');
         const counterDiv = document.querySelector('#counter');
         const choices = document.querySelectorAll('.choice');
+        const quizView = document.querySelector('#quiz-view');
+        const thanksView = document.querySelector('#thanks-view')
         const alertTxt =
             "Welcome to JS quiz\n Here are the rules: \n 1 -Don't select the same answer twice.\n2- If all your answers are wrong, you will not get a feedback abput how many question(s) ypu answered.\n3- If your answer is correct, ypu will see green color\n 4- If your answer is wrong, you will see red color";
         //to keep track of the how many answers were correct
@@ -328,11 +333,15 @@
         let questionCounter = 0;
 
         function toggleHidden(e) {
-            this.classList.toggle('hidden');
+            
             if (this === startBtn) {
+                this.classList.toggle('hidden');
                 answers.classList.toggle('hidden');
                 question.classList.toggle('hidden');
                 showQuestion();
+            } else if (this === exitBtn){
+                quizView.classList.toggle('hidden');
+                thanksView.classList.toggle('hidden');
             }
         }
 
@@ -348,22 +357,16 @@
 
         function showQuestion() {
             counterDiv.innerHTML = `${++questionCounter}/9`;
-            if (questions.length !== 0) {
-                question.innerHTML = questions[0].text;
-                let answers = questions[0].answers;
-                choices.forEach((choice) => {
-                    backTobaseColors(choice);
-                    choice.setAttribute('data-answer', `${answers[0].is_correct}`);
-                    choice.setAttribute('id', `${answers[0].id}`);
-                    choice.innerHTML = answers[0].text;
-                    //not to repeat the sama choice twice
-                    answers.shift();
-                });
-            } else {
-                showTheResult();
-                exitBtn.classList.remove('hidden');
-            }
-
+            question.innerHTML = questions[0].text;
+            let answers = questions[0].answers;
+            choices.forEach((choice) => {
+                backTobaseColors(choice);
+                choice.setAttribute('data-answer', `${answers[0].is_correct}`);
+                choice.setAttribute('id', `${answers[0].id}`);
+                choice.innerHTML = answers[0].text;
+                //not to repeat the sama choice twice
+                answers.shift();
+            });
             //not to repeat the sama question twice
             questions.shift();
             nextBtn.classList.add('hidden');
@@ -392,14 +395,22 @@
                     wrong(choice);
                 }
             });
-            nextBtn.classList.remove('hidden');
+            if (questions.length !== 0) {
+                nextBtn.classList.remove('hidden');
+            } else {
+                exitBtn.classList.remove('hidden');
+                showTheResult();
+            }
             if (this.dataset.answer == 'true') {
                 total++;
             }
         }
+
         startBtn.addEventListener('click', toggleHidden);
         startBtn.addEventListener('click', () => alert(alertTxt));
         nextBtn.addEventListener('click', showQuestion);
+        // exitBtn.addEventListener('click', showThankYou);
+        exitBtn.addEventListener('click', toggleHidden);
         choices.forEach(choice => choice.addEventListener('click', revealSolution));
     </script>
 </body>
