@@ -49,10 +49,10 @@ button:hover {
     display: none;
 }
 
-.correct {
-    background-color: #00FF6A;
+.bg-green {
+    background-color: #00FF6A!important;
 }
 
-.wrong {
-    background-color: red;
+.bg-red {
+    background-color: red!important;
 }

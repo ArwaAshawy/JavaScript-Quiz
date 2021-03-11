@@ -8,13 +8,11 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
-    <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link
         href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,200;1,300;1,400;1,500;1,600;1,700&family=Pacifico&display=swap"
         rel="stylesheet">
-    <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Squada+One&display=swap" rel="stylesheet">
     <title>JS-Quiz</title>
 
@@ -25,38 +23,35 @@
     <div id="quiz-view">
         <div class="d-flex justify-content-center align-items-center vh-100 ">
             <div class="container rounded px-5">
-    
+
                 <h1 class="logo fs-4 fw-bold my-3 neg-me">
                     JavaScrip Quiz
                 </h1>
-                <!-- <div id="counter" class="d-flex justify-content-end hidden fw-bold">
-                    <p class="border border-1 border-dark"></p>
-                </div> -->
                 <div>
                     <p id="counter" class="text-end fw-bold"></p>
                 </div>
-    
+
                 <h1 class="question text-center hidden"></h1>
                 <div class="row gy-3 gx-5 row-cols-2 my-1 answers hidden">
                     <div class="col">
                         <div class="bg-primary  rounded p-2 choice text-white text-center fs-4">
-    
+
                         </div>
                     </div>
-    
+
                     <div class="col">
                         <div class="bg-primary  rounded p-2 choice text-white text-center fs-4">
-    
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="bg-primary  rounded p-2 choice text-white text-center fs-4">
-    
+
                         </div>
                     </div>
                     <div class="col">
                         <div class="bg-primary  rounded p-2 choice text-white text-center fs-4">
-    
+
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="bg-primary  rounded p-2 choice text-white text-center fs-4">
+
                         </div>
                     </div>
                 </div>
@@ -74,13 +69,13 @@
                             class="btn btn-primary btn-lg border border-secondary fw-bold fs-4 d-block mx-auto m-2">Exit</button>
                     </div>
                 </div>
-    
+
             </div>
-    
-    
+
+
         </div>
     </div>
-   
+
     <div id="thanks-view" class="logo lg-font fw-bold d-flex justify-content-center align-items-center vh-100 hidden">
         <p>
             Thank you for taking JavaScript Quiz!
@@ -318,10 +313,10 @@
         const startBtn = document.querySelector('#start-btn');
         const nextBtn = document.querySelector('#next-btn');
         const exitBtn = document.querySelector('#exit-btn');
-        const question = document.querySelector('.question');
-        const answers = document.querySelector('.answers');
+        const questionContainer = document.querySelector('.question');
+        const answersContainer = document.querySelector('.answers');
         const counterDiv = document.querySelector('#counter');
-        const choices = document.querySelectorAll('.choice');
+        const choicesContainers = document.querySelectorAll('.choice');
         const quizView = document.querySelector('#quiz-view');
         const thanksView = document.querySelector('#thanks-view')
         const alertTxt =
@@ -331,17 +326,16 @@
         //to keep track of the question's number
         let questionCounter = 0;
 
-        function toggleHidden(e) {
-            
-            if (this === startBtn) {
-                this.classList.toggle('hidden');
-                answers.classList.toggle('hidden');
-                question.classList.toggle('hidden');
-                showQuestion();
-            } else if (this === exitBtn){
-                quizView.classList.toggle('hidden');
-                thanksView.classList.toggle('hidden');
-            }
+        function endTheQuiz() {
+            quizView.classList.add('hidden');
+            thanksView.classList.remove('hidden');
+        }
+
+        function startTheQuiz() {
+            this.classList.add('hidden');
+            answersContainer.classList.remove('hidden');
+            questionContainer.classList.remove('hidden');
+            showQuestion();
         }
 
         function showTheResult() {
@@ -356,9 +350,9 @@
 
         function showQuestion() {
             counterDiv.innerHTML = `${++questionCounter}/9`;
-            question.innerHTML = questions[0].text;
+            questionContainer.innerHTML = questions[0].text;
             let answers = questions[0].answers;
-            choices.forEach((choice) => {
+            choicesContainers.forEach((choice) => {
                 backTobaseColors(choice);
                 choice.setAttribute('data-answer', `${answers[0].is_correct}`);
                 choice.setAttribute('id', `${answers[0].id}`);
@@ -373,25 +367,25 @@
         //to remove the modifications that were added because of revealSolution function and go back to the primary style
         function backTobaseColors(elm) {
             elm.classList.add('bg-primary', 'text-white');
-            elm.classList.remove('correct', 'wrong', 'text-dark');
+            elm.classList.remove('bg-green', 'bg-red', 'text-dark');
         }
 
-        function correct(elm) {
+        function markCorrectAnswer(elm) {
             elm.classList.remove('bg-primary', 'text-white');
-            elm.classList.add('correct', 'text-dark');
+            elm.classList.add('bg-green', 'text-dark');
         }
 
-        function wrong(elm) {
+        function markWrongAnswer(elm) {
             elm.classList.remove('bg-primary');
-            elm.classList.add('wrong');
+            elm.classList.add('bg-red');
         }
 
         function revealSolution() {
-            choices.forEach(choice => {
+            choicesContainers.forEach(choice => {
                 if (choice.dataset.answer == 'true') {
-                    correct(choice);
+                    markCorrectAnswer(choice);
                 } else {
-                    wrong(choice);
+                    markWrongAnswer(choice);
                 }
             });
             if (questions.length !== 0) {
@@ -405,12 +399,11 @@
             }
         }
 
-        startBtn.addEventListener('click', toggleHidden);
+        startBtn.addEventListener('click', startTheQuiz);
         startBtn.addEventListener('click', () => alert(alertTxt));
         nextBtn.addEventListener('click', showQuestion);
-        // exitBtn.addEventListener('click', showThankYou);
-        exitBtn.addEventListener('click', toggleHidden);
-        choices.forEach(choice => choice.addEventListener('click', revealSolution));
+        exitBtn.addEventListener('click', endTheQuiz);
+        choicesContainers.forEach(choice => choice.addEventListener('click', revealSolution));
     </script>
 </body>
 
