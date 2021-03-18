@@ -325,6 +325,8 @@
         let total = 0;
         //to keep track of the question's number
         let questionCounter = 0;
+        //we will remove the first element of the array after each question revealation, so in order not to modify the original array in function show question
+        let questions = quiz;
 
         function endTheQuiz() {
             quizView.classList.add('hidden');
@@ -340,14 +342,13 @@
 
         function showTheResult() {
             const p = document.createElement('p');
-            // let p = document.createElement('p');
             const text = document.createTextNode(`You got ${total} correct(s) from 9`);
             p.appendChild(text);
             counterDiv.appendChild(p);
         }
-        //we will remove the first element of the array after each question revealation, so in order not to modify the original array
-        let questions = quiz;
-
+        /**
+         * this function will get the quiz's question from the quiz array, and printed in the questionContainer and then will remove the question that was retrieved from the array
+         */
         function showQuestion() {
             counterDiv.innerHTML = `${++questionCounter}/9`;
             questionContainer.innerHTML = questions[0].text;
