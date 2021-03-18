@@ -268,7 +268,7 @@
                     },
                     {
                         id: 2,
-                        text: "IPython",
+                        text: "Python",
                         is_correct: true
                     },
                     {
@@ -341,10 +341,11 @@
         }
 
         function showTheResult() {
-            const p = document.createElement('p');
+
+            const pElement = document.createElement('p');
             const text = document.createTextNode(`You got ${total} correct(s) from 9`);
-            p.appendChild(text);
-            counterDiv.appendChild(p);
+            pElement.appendChild(text);
+            counterDiv.appendChild(pElement);
         }
         /**
          * this function will get the quiz's question from the quiz array, and printed in the questionContainer and then will remove the question that was retrieved from the array
@@ -358,10 +359,10 @@
                 choice.setAttribute('data-answer', `${answers[0].is_correct}`);
                 choice.setAttribute('id', `${answers[0].id}`);
                 choice.innerHTML = answers[0].text;
-                //not to repeat the sama choice twice
+                //not to repeat the same choice twice
                 answers.shift();
             });
-            //not to repeat the sama question twice
+            //not to repeat the same question twice
             questions.shift();
             nextBtn.classList.add('hidden');
         }
