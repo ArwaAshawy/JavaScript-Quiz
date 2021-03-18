@@ -357,7 +357,7 @@
                 choice.setAttribute('data-answer', `${answers[0].is_correct}`);
                 choice.setAttribute('id', `${answers[0].id}`);
                 choice.innerHTML = answers[0].text;
-                //not to repeat the sama choice twice
+                //not to repeat the same choice twice
                 answers.shift();
             });
             //not to repeat the same question twice
