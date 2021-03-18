@@ -1,0 +1,58 @@
+/* font-family: 'Pacifico', cursive;
+font-family: 'Josefin Sans', sans-serif; */
+:root {
+    --hue: 207;
+    --q-bg: rgb(137, 172, 173);
+    --logo-color: rgb(139, 24, 111);
+}
+
+body {
+    /* --hue: var(--hue-neutral); */
+    background-color: hsl(var(--hue), 100%, 20%);
+}
+
+.container {
+    background-color: var(--q-bg);
+    width: 900px;
+    max-width: 90%;
+    box-shadow: 5px 5px 5px 5px;
+}
+
+.logo {
+    font-family: 'Pacifico', cursive;
+    color: var(--logo-color);
+   
+}
+.neg-me {
+    margin-left: -2.1rem ;
+}
+.lg-font {
+    font-size: 3.5rem;
+}
+button:hover {
+    border: 2px white solid;
+}
+
+.choice:hover {
+    border: 2px white solid;
+}
+
+.question {
+   font-family: 'Squada One', cursive;;
+}
+
+.choice {
+    font-family: 'Josefin Sans', sans-serif;;
+}
+
+.hidden {
+    display: none;
+}
+
+.bg-green {
+    background-color: #00FF6A!important;
+}
+
+.bg-red {
+    background-color: red!important;
+}
